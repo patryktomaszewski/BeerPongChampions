@@ -1,11 +1,17 @@
 {% extends 'championship/main.html' %}
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/home.css'%}">
+{% endblock %}
+
+
 {% block content %}
 <div class="grid">
     <a class="circle" style="display:block" href="#">
         <p class="text">Blank</p>
 
     </a>
-    <a class="circle" style="display:block" href="#">
+    <a class="circle" style="display:block" href="{% url 'leaderboard' %}">
         <div class="text">
             <p>Leader Board</p>
         </div>
