@@ -66,18 +66,26 @@ a:active {
 
 
 @media (min-width: 1091px) {
-  .grid {
-  margin-left: 300px;
-  margin-right: 300px;
-  margin-top: 200px;
-}
+    .grid {
+        margin-left: 15vw;
+        margin-right: 15vw;
+        margin-top: 2vw;
+    }
 
-  .circle {
-    width: 15vw;
-    height: 15vw;
+    .circle {
+        width: 15vw;
+        height: 15vw;
+    }
+
+    body {
+        overflow: hidden;
+
+    }
+    .text {
+     font-size: 25px;
+
   }
 }
-
 
 
 
@@ -86,13 +94,14 @@ a:active {
    .grid {
     margin-left: 150px;
     margin-right: 150px ;
-    margin-top: 100px;
+    margin-top: 50px;
   }
+
+
 
   .circle {
     width: 20vw;
     height: 20vw;
-
   }
 }
 

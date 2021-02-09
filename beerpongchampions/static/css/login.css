@@ -7,6 +7,7 @@
 body{
     font-family: 'Poppins', sans-serif;
     overflow: hidden;
+	background-color:  #E0FFFF;
 }
 
 .wave{
@@ -148,16 +149,21 @@ form{
 }
 
 a{
-	display: block;
+	display: inline-block;
 	text-align: right;
 	text-decoration: none;
 	color: #999;
 	font-size: 0.9rem;
 	transition: .3s;
+
 }
 
 a:hover{
 	color: #38d39f;
+}
+
+.links{
+	justify-content: space-around;
 }
 
 .btn{
@@ -180,6 +186,7 @@ a:hover{
 .btn:hover{
 	background-position: right;
 }
+
 
 
 @media screen and (max-width: 1050px){
