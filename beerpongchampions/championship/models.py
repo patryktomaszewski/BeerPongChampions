@@ -12,12 +12,13 @@ class Player(models.Model):
         ('World Class', 'World Class'),
         ('Champion', 'Champion'),
     )
+
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, null=True)
-    email = models.EmailField(max_length=200, null=True)
+    email = models.CharField(max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
-    points = models.FloatField(null=True)
-    player_level = models.CharField(max_length=200, null=True, choices=Level)
+    points = models.FloatField(null=True, default=0.0)
+    player_level = models.CharField(max_length=200, null=True, choices=Level, default="Amateur")
     profile_pic = models.ImageField(default="profile_pic_default.png", null=True, blank=True)
 
 
