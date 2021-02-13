@@ -2,16 +2,22 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 from .models import *
-from .forms import CreateUserForm
+from .forms import CreateUserForm, PlayerForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+
 
 def leaderboard(request):
     context = {}
     return render(request, 'championship/leaderboard.html', context)
 
 def home(request):
-    context = {}
+    if request.user.is_authenticated:
+        player = request.user.player.name
+    else:
+        player = "unauthenticated"
+
+    context = {'player':player}
     return render(request, 'championship/home.html', context)
 
 
@@ -49,6 +55,8 @@ def registerPage(request):
 @login_required(login_url='login')
 def accountView(request, pk):
     player = Player.objects.get(user__username=pk)
+    if player.profile_pic == None:
+        player.profile_pic = "profile_pic_default.png"
     info_graphics = {'Amateur':'lechfree.png',
                      'Intermediate':'desperados.png',
                      'Professional':'tyskie.png',
@@ -64,5 +72,13 @@ def accountView(request, pk):
 
 @login_required(login_url='login')
 def accountSettings(request, pk):
-    context = {}
+    player = Player.objects.get(user__username=pk)
+    form = PlayerForm(instance=player)
+
+    if request.method == 'POST':
+        form = PlayerForm(request.POST, request.FILES, instance=player)
+        if form.is_valid():
+            form.save()
+
+    context = {'form':form, 'player':player}
     return render(request, 'championship/account_settings.html', context)

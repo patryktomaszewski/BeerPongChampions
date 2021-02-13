@@ -1,1 +1,70 @@
-<h4>settings</h4>
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BeerPong Champions</title>
+	<link rel="stylesheet" type="text/css" href="{% static '/css/account_settings.css'%}">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <img class="wave" src="{% static 'images/wave.png' %}">
+    <div class="container">
+        <div class="img">
+            <img src="{{ player.profile_pic.url }}">
+{#            <img src="{% static '/images/undraw_Beer_celebration_cefj.svg' %}">#}
+        </div>
+        <div class="login-content">
+            <div class="profile">
+
+               <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas"> Name:   </i>
+
+                    </div>
+                    <div class="div">
+                        {{ form.name }}
+                    </div>
+                </div>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas"> Email: </i>
+                    </div>
+                    <div class="div">
+
+                        {{ form.email }}
+                    </div>
+                </div>
+                   <div class="input-div one">
+                    <div class="i">
+                        <i class="fas"> Email: </i>
+                    </div>
+                    <div class="div">
+
+                        {{ form.player_level }}
+                    </div>
+                </div>
+                    <div class="input-pic">
+                        <div class="pict">
+                            <i class="fas">Profile Pic: </i>
+                        </div>
+                        <div class="change_pic">
+                         {{ form.profile_pic }}
+                        </div>
+                    </div>
+
+
+
+                <input class="btn " type="submit" name="Update Information" value="Upadate Informations">
+            </form>
+                <a id ="back" class="btn" href="{% url 'accountView' player.name %}" >Back to profile</a>
+        </div>
+    </div>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.js"></script>
+    <script type="text/javascript" src="{% static '/js/account_view.js' %}"></script>
+</body>
+</html>

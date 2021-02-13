@@ -19,7 +19,7 @@ class Player(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     points = models.FloatField(null=True, default=0.0)
     player_level = models.CharField(max_length=200, null=True, choices=Level, default="Amateur")
-    profile_pic = models.ImageField(default="profile_pic_default.png", null=True, blank=True)
+    profile_pic = models.ImageField(default="profile_pic_default.png", null=True )
 
 
     def __str__(self):

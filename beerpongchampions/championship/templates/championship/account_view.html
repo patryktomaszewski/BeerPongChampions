@@ -13,12 +13,13 @@
     <img class="wave" src="{% static 'images/wave.png' %}">
     <div class="container">
         <div class="img">
-            <img src="{% static '/images/undraw_Beer_celebration_cefj.svg' %}">
+{#            <img src="{% static '/images/undraw_Beer_celebration_cefj.svg' %}">#}
+            <img src="{{ player.profile_pic.url }}">
         </div>
         <div class="login-content">
             <div class="profile">
 
-                <img src="{{ player.profile_pic.url }}">
+
 
                 <h2 class="title">{{ player.name.capitalize }}</h2>
                 <div class="input-div one">
