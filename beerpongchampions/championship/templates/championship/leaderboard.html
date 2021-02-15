@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block script %}
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.js"></script>
     <script type="text/javascript" src="{% static '/js/leaderboard.js' %}"></script>
 {% endblock %}
 
@@ -17,244 +18,144 @@
             <div class="lboard_tabs">
                 <div class="tabs">
                     <ul>
-                        <li data-li="today">Today</li>
-                        <li class="active" data-li="month">Month</li>
-                        <li data-li="year">Year</li>
+                        <li id="choice" class="active" data-li="BestPlayers">Best Players</li>
+                        <li id="dropdown" data-li="Top Players in Division" onmouseover="myFunction()" onmouseout="fun2()">Top in Division
+
+                                <ul class="dropdown-content">
+                                    <li id="choice" data-li="Amateur">Amateur</li>
+                                     <li id="choice" data-li="Inter">Intermediate</li>
+                                     <li id="choice" data-li="Prof">Professional</li>
+                                     <li id="choice" data-li="WrdClass">World Class</li>
+                                     <li id="choice" data-li="Champ">Champion</li>
+                                </ul>
+
+                        </li>
                     </ul>
                 </div>
 
             </div>
-            <div class="lboard_wrap">
-                <div class="lboard_item today" style="display: none;">
+            <div id="lboard" class="lboard_wrap">
+                <div class="lboard_item BestPlayers" style="display: block;">
+                {% for leader in leaders %}
                     <div class="lboard_mem">
                         <div class="img">
-                            <img src={% static 'images/profile_pic_default.png' %} alt="picture_1">
-                        </div>
-                        <div class="name_bar">
-                            <p><span>1.</span> Charles John</p>
-                            <div class="bar_wrap">
-                                <div class="inner_bar" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div class="points">
-                            195 points
-                        </div>
-                    </div>
+                            <img src="{{ leader.profile_pic.url }}">
 
-                    <div class="lboard_mem">
-                        <div class="img">
-                            <img src={% static 'images/profile_pic_default.png' %} alt="picture_2">
                         </div>
                         <div class="name_bar">
-                            <p><span>2.</span>Alex Mike</p>
+                            <p><span>{{ forloop.counter }}.</span>{{ leader.name }}</p>
                             <div class="bar_wrap">
-                                <div class="inner_bar" style="width: 80%"></div>
+                                <div class="inner_bar" style="width: {{ leader.p_points }}%"></div>
                             </div>
                         </div>
                         <div class="points">
-                            180 points
+                            {{ leader.points }} points
                         </div>
                     </div>
-
-                    <div class="lboard_mem">
-                        <div class="img">
-                            <img src={% static 'images/profile_pic_default.png' %} alt="picture_3">
-                        </div>
-                        <div class="name_bar">
-                            <p><span>3.</span>Johnson</p>
-                            <div class="bar_wrap">
-                                <div class="inner_bar" style="width: 60%"></div>
-                            </div>
-                        </div>
-                        <div class="points">
-                                160 points
-                        </div>
-                    </div>
-
-                    <div class="lboard_mem">
-                        <div class="img">
-                            <img src={% static 'images/profile_pic_default.png' %} alt="picture_4">
-                        </div>
-                        <div class="name_bar">
-                            <p><span>4.</span>Rosey</p>
-                            <div class="bar_wrap">
-                                <div class="inner_bar" style="width: 30%"></div>
-                            </div>
-                        </div>
-                        <div class="points">
-                            130 points
-                        </div>
-                    </div>
-
-                    <div class="lboard_mem">
-                        <div class="img">
-                            <img src={% static 'images/profile_pic_default.png' %} alt="picture_5">
-                        </div>
-                        <div class="name_bar">
-                            <p><span>5.</span>Scarlett Angela</p>
-                            <div class="bar_wrap">
-                                <div class="inner_bar" style="width: 10%"></div>
-                            </div>
-                        </div>
-                        <div class="points">
-                            110 points
-                        </div>
-                    </div>
+                {% endfor %}
                 </div>
-                <div class="lboard_item month" style="display: block;">
-                    <div class="lboard_mem">
-                        <div class="img">
-                            <img src={% static 'images/profile_pic_default.png' %} alt="picture_1">
-                        </div>
-                        <div class="name_bar">
-                            <p><span>1.</span> Charles John</p>
-                            <div class="bar_wrap">
-                                <div class="inner_bar" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div class="points">
-                            1195 points
-                        </div>
-                    </div>
 
+                <div class="lboard_item Amateur" style="display: none;">
+                {% for amateur in top_amateurs %}
                     <div class="lboard_mem">
                         <div class="img">
-                            <img src={% static 'images/profile_pic_default.png' %} alt="picture_2">
-                        </div>
-                        <div class="name_bar">
-                            <p><span>2.</span>Alex Mike</p>
-                            <div class="bar_wrap">
-                                <div class="inner_bar" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="points">
-                            1180 points
-                        </div>
-                    </div>
+                            <img src="{{ amateur.profile_pic.url }}">
 
-                    <div class="lboard_mem">
-                        <div class="img">
-                            <img src={% static 'images/profile_pic_default.png' %} alt="picture_3">
                         </div>
                         <div class="name_bar">
-                            <p><span>3.</span>Johnson</p>
+                            <p><span>{{ forloop.counter }}.</span>{{ amateur.name }}</p>
                             <div class="bar_wrap">
-                                <div class="inner_bar" style="width: 60%"></div>
+                                <div class="inner_bar" style="width: {{ amateur.p_points }}%"></div>
                             </div>
                         </div>
                         <div class="points">
-                                1160 points
+                            {{ amateur.points }} points
                         </div>
                     </div>
-
-                    <div class="lboard_mem">
-                        <div class="img">
-                            <img src={% static 'images/profile_pic_default.png' %} alt="picture_4">
-                        </div>
-                        <div class="name_bar">
-                            <p><span>4.</span>Rosey</p>
-                            <div class="bar_wrap">
-                                <div class="inner_bar" style="width: 30%"></div>
-                            </div>
-                        </div>
-                        <div class="points">
-                            1130 points
-                        </div>
-                    </div>
-
-                    <div class="lboard_mem">
-                        <div class="img">
-                            <img src={% static 'images/profile_pic_default.png' %} alt="picture_5">
-                        </div>
-                        <div class="name_bar">
-                            <p><span>5.</span>Scarlett Angela</p>
-                            <div class="bar_wrap">
-                                <div class="inner_bar" style="width: 10%"></div>
-                            </div>
-                        </div>
-                        <div class="points">
-                            1110 points
-                        </div>
-                    </div>
+                {% endfor %}
                 </div>
-                <div class="lboard_item year" style="display: none;">
-                    <div class="lboard_mem">
-                        <div class="img">
-                            <img src={% static 'images/profile_pic_default.png' %} alt="picture_1">
-                        </div>
-                        <div class="name_bar">
-                            <p><span>1.</span> Charles John</p>
-                            <div class="bar_wrap">
-                                <div class="inner_bar" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div class="points">
-                            3195 points
-                        </div>
-                    </div>
 
+                <div class="lboard_item Inter" style="display: none;">
+                {% for inter in top_intermediate %}
                     <div class="lboard_mem">
                         <div class="img">
-                            <img src={% static 'images/profile_pic_default.png' %} alt="picture_2">
-                        </div>
-                        <div class="name_bar">
-                            <p><span>2.</span>Alex Mike</p>
-                            <div class="bar_wrap">
-                                <div class="inner_bar" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="points">
-                            3180 points
-                        </div>
-                    </div>
+                            <img src="{{ inter.profile_pic.url }}">
 
-                    <div class="lboard_mem">
-                        <div class="img">
-                            <img src={% static 'images/profile_pic_default.png' %} alt="picture_3">
                         </div>
                         <div class="name_bar">
-                            <p><span>3.</span>Johnson</p>
+                            <p><span>{{ forloop.counter }}.</span>{{ inter.name }}</p>
                             <div class="bar_wrap">
-                                <div class="inner_bar" style="width: 60%"></div>
+                                <div class="inner_bar" style="width: {{ inter.p_points }}%"></div>
                             </div>
                         </div>
                         <div class="points">
-                                3160 points
+                            {{ inter.points }} points
                         </div>
                     </div>
+                {% endfor %}
+                </div>
 
+               <div class="lboard_item Prof" style="display: none;">
+                {% for prof in top_professional %}
                     <div class="lboard_mem">
                         <div class="img">
-                            <img src={% static 'images/profile_pic_default.png' %} alt="picture_4">
+                            <img src="{{ prof.profile_pic.url }}">
                         </div>
                         <div class="name_bar">
-                            <p><span>4.</span>Rosey</p>
+                            <p><span>{{ forloop.counter }}.</span>{{ prof.name }}</p>
                             <div class="bar_wrap">
-                                <div class="inner_bar" style="width: 30%"></div>
+                                <div class="inner_bar" style="width: {{ prof.p_points }}%"></div>
                             </div>
                         </div>
                         <div class="points">
-                            3130 points
+                            {{ prof.points }} points
                         </div>
                     </div>
+                {% endfor %}
+                </div>
 
+                <div class="lboard_item WrdClass" style="display: none;">
+                {% for wrd in top_wrld_class %}
                     <div class="lboard_mem">
                         <div class="img">
-                            <img src={% static 'images/profile_pic_default.png' %} alt="picture_5">
+                            <img src="{{ wrd.profile_pic.url }}">
                         </div>
                         <div class="name_bar">
-                            <p><span>5.</span>Scarlett Angela</p>
+                            <p><span>{{ forloop.counter }}.</span>{{ wrd.name }}</p>
                             <div class="bar_wrap">
-                                <div class="inner_bar" style="width: 10%"></div>
+                                <div class="inner_bar" style="width: {{ wrd.p_points }}%"></div>
                             </div>
                         </div>
                         <div class="points">
-                            3110 points
+                            {{ wrd.points }} points
                         </div>
                     </div>
+                {% endfor %}
+                </div>
+
+                <div class="lboard_item Champ" style="display: none;">
+                {% for champ in top_champion %}
+                    <div class="lboard_mem">
+                        <div class="img">
+                            <img src="{{ champ.profile_pic.url }}">
+                        </div>
+                        <div class="name_bar">
+                            <p><span>{{ forloop.counter }}.</span>{{ champ.name }}</p>
+                            <div class="bar_wrap">
+                                <div class="inner_bar" style="width: {{ champ.p_points }}%"></div>
+                            </div>
+                        </div>
+                        <div class="points">
+                            {{ champ.points }} points
+                        </div>
+                    </div>
+                {% endfor %}
                 </div>
             </div>
+
+
         </div>
 
     </div>
 {% endblock %}
+

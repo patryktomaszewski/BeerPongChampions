@@ -8,6 +8,10 @@
     box-sizing: border-box;
 }
 
+body{
+    overflow: hidden;
+}
+
 .wrapper{
     width: 100%;
     height: 100%;
@@ -92,7 +96,7 @@
     margin-right: 5px;
 }
 .lboard_wrap .lboard_item  .points{
-    width: 100px;
+    width: 110px;
     color: #3a3d51;
 }
 
@@ -116,3 +120,27 @@
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
+
+#dropdown{
+
+}
+.dropdown-content {
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    background: #f94f62;
+
+    float: top;
+
+}
+#dropdown:hover .dropdown-content{
+    visibility: visible;
+}
+
+/*#dropdown:hover + .lboard_wrap{*/
+/*   top: 200px;*/
+
+/*}*/
+
+
+/*#dropdown:hover #dropdown-content{display: block}*/

@@ -238,7 +238,15 @@ a:hover{
 	background-position: right;
 }
 
-
+#back{
+	text-align: center;
+	width: 100%;
+	user-select: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+}
 
 @media screen and (max-width: 1050px){
 	.container{

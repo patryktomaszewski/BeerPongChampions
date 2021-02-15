@@ -1,8 +1,12 @@
-var tabs = document.querySelectorAll(".lboard_tabs ul li");
-var today = document.querySelector(".today");
-var month = document.querySelector(".month");
-var year = document.querySelector(".year");
+var tabs = document.querySelectorAll( "#choice");
+var BestPlayers = document.querySelector(".BestPlayers");
+var Amateur = document.querySelector(".Amateur");
+var Inter = document.querySelector(".Inter");
+var Prof = document.querySelector(".Prof");
+var WrdClass = document.querySelector(".WrdClass");
+var Champ = document.querySelector(".Champ");
 var items = document.querySelectorAll(".lboard_item");
+
 
 tabs.forEach(function (tab){
     tab.addEventListener("click", function (){
@@ -17,14 +21,35 @@ tabs.forEach(function (tab){
             item.style.display = "none";
         })
 
-        if(currentdatali == "today"){
-            today.style.display = "block";
+        if(currentdatali == "BestPlayers"){
+            BestPlayers.style.display = "block";
         }
-        else if(currentdatali == "month"){
-            month.style.display = "block";
+        else if(currentdatali == "Amateur"){
+            Amateur.style.display = "block";
+        }
+        else if(currentdatali == "Inter"){
+            Inter.style.display = "block";
+        }
+        else if(currentdatali == "Prof"){
+            Prof.style.display = "block";
+        }
+        else if(currentdatali == "WrdClass"){
+            WrdClass.style.display = "block";
         }
         else{
-            year.style.display = "block";
+            Champ.style.display = "block";
         }
     })
 })
+
+
+var cw2 = $('.dropdown-content').height();
+
+function myFunction(x) {
+  document.getElementById("lboard").style.top= 50+cw2+"px";
+  document.getElementById("lboard").style.transitionDuration= "0.5s";
+}
+function fun2() {
+  document.getElementById("lboard").style.top= "70px";
+  document.getElementById("lboard").style.transitionDuration= "0.5s";
+}

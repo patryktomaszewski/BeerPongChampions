@@ -51,7 +51,8 @@
                     {% csrf_token %}
                     <input type="submit" class="btn" value="Account Settings">
                 </form>
-
+                 <a id ="back" class="btn" href="{% url 'home' %}" >Back to home page</a>
+                <a id ="back" class="btn" href="{% url 'logout' %}" >Logout</a>
             </div>
         </div>
     </div>
